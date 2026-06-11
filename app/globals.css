@@ -1,26 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --accent: #6C63FF;
+  --accent-dim: rgba(108, 99, 255, 0.1);
+  --accent-border: rgba(108, 99, 255, 0.3);
+  --bg: #0A0A0F;
+  --bg-card: #111119;
+  --bg-section-alt: #0D0D14;
+  --bg-section-dark: #0E0D1A;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.06);
+  --text: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --text-dimmer: rgba(255, 255, 255, 0.28);
+  --text-dimmest: rgba(255, 255, 255, 0.22);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Shared section */
+.section {
+  padding: 72px 36px;
+  border-bottom: 0.5px solid var(--border-light);
+}
+
+/* Typography */
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1.3px;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* Pill badge */
+.pill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 0.5px solid var(--accent-border);
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--accent);
+  color: #FFFFFF;
+  border: none;
+  padding: 13px 26px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.25s ease-out;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  background: #5a52e0;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  border: 0.5px solid rgba(255, 255, 255, 0.18);
+  padding: 13px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Card */
+.card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+}
+
+/* Service icon */
+.svc-icon {
+  width: 42px;
+  height: 42px;
+  background: #0D0D18;
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+/* Step number */
+.step-number {
+  width: 38px;
+  height: 38px;
+  background: rgba(108, 99, 255, 0.14);
+  border: 0.5px solid var(--accent-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Client avatar */
+.client-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6C63FF, #3a2f9e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  border: 2px solid var(--accent-border);
+}
+
+/* Testimonial avatar */
+.t-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6C63FF, #3a2f9e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  border: 1.5px solid var(--accent-border);
+}
+
+/* Play button */
+.play-btn {
+  width: 48px;
+  height: 48px;
+  background: rgba(108, 99, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+}
+
+.play-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  background: rgba(108, 99, 255, 0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav a:hover {
+  color: #FFFFFF !important;
+}
+
+/* ========== ANIMATIONS ========== */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(200%); }
+}
+
+@keyframes clientEnter {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade-up sections */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee ticker */
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Client cards - staggered entrance */
+.client-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  will-change: transform;
+}
+
+.client-card.visible {
+  animation: clientEnter 0.5s ease-out forwards;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+.client-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(108, 99, 255, 0.4);
+}
+
+.client-card .accent-bar {
+  transition: width 0.4s ease-out;
+}
+
+.client-card:hover .accent-bar {
+  width: 100%;
+}
+
+/* Video thumbnail overlay */
+.thumb-overlay {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.thumb-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.3s ease-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.thumb-overlay:hover::before {
+  background: rgba(0,0,0,0.2);
+}
+
+.play-btn-inner {
+  transition: transform 0.3s ease-out;
+  position: relative;
+  z-index: 2;
+}
+
+.thumb-overlay:hover .play-btn-inner {
+  transform: scale(1.1);
+}
+
+.play-btn-inner.is-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.thumb-overlay:hover .play-btn-inner.is-center {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Button shimmer sweep */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255,255,255,0.1) 45%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.1) 55%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: shimmer 0.6s ease-in-out;
+}
+
+/* Nav link underline slide-in */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: #6C63FF;
+  transition: width 0.25s ease-out, left 0.25s ease-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+
+  .client-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .client-card:hover {
+    transform: none;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .btn-shimmer::after {
+    display: none;
+  }
 }
