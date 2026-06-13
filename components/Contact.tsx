@@ -116,7 +116,7 @@ export default function Contact() {
           border-radius: 12px;
           cursor: pointer;
           text-decoration: none;
-          flex-wrap: wrap;
+          
         }
 
         @media (max-width: 480px) {
