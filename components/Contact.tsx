@@ -260,10 +260,12 @@ export default function Contact() {
             style={{
               background: "#0f1a0f",
               border: "0.5px solid rgba(37,211,102,0.3)",
+              display: "flex",
+              alignItems: "center", // ensure the row itself is centered
+              gap: "14px",
             }}
           >
             <div
-              className="contact-icon"
               style={{
                 width: "42px",
                 height: "42px",
@@ -294,7 +296,9 @@ export default function Contact() {
                 Typically replies in minutes
               </div>
             </div>
-            <div style={{ marginLeft: "auto" }}>
+            <div
+              style={{ marginLeft: "auto", alignSelf: "center", flexShrink: 0 }}
+            >
               <svg
                 width="14"
                 height="14"
