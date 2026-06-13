@@ -5,10 +5,13 @@ import { useEffect, useRef, useState } from "react";
 const featuredClients = [
   {
     handle: "@payalagarwalmukherjee",
-    name: "Payal Agarwal Mukherjee",
+    name: "Payal Agarwal",
     niche: "Fitness · Mom",
     followers: "1.4",
     suffix: "M",
+    initials: "PA",
+    avatarBg: "#2D1F6E",
+    photo: null, // replace with image path e.g. "/photos/payal.jpg"
   },
   {
     handle: "@topstocker24",
@@ -16,6 +19,9 @@ const featuredClients = [
     niche: "Finance · Stocks",
     followers: "636",
     suffix: "K",
+    initials: "VK",
+    avatarBg: "#0F3D28",
+    photo: null,
   },
   {
     handle: "@creative.thrives",
@@ -23,6 +29,9 @@ const featuredClients = [
     niche: "Infotainment",
     followers: "489",
     suffix: "K",
+    initials: "AR",
+    avatarBg: "#3D1F0A",
+    photo: null,
   },
   {
     handle: "@nupuurpatil",
@@ -30,6 +39,9 @@ const featuredClients = [
     niche: "Nutrition",
     followers: "358",
     suffix: "K",
+    initials: "NP",
+    avatarBg: "#0A2B3D",
+    photo: null,
   },
   {
     handle: "@financewithmadhav",
@@ -37,6 +49,9 @@ const featuredClients = [
     niche: "Finance",
     followers: "315",
     suffix: "K",
+    initials: "MB",
+    avatarBg: "#2B1A0A",
+    photo: null,
   },
   {
     handle: "@fit.with.rishi",
@@ -44,39 +59,77 @@ const featuredClients = [
     niche: "Fat Loss",
     followers: "194",
     suffix: "K",
+    initials: "R",
+    avatarBg: "#0F3320",
+    photo: null,
   },
 ];
 
 const secondaryClients = [
-  { initial: "Y", handle: "@_yogadelight", followers: "143K", niche: "Yoga" },
+  {
+    initial: "Y",
+    handle: "@_yogadelight",
+    followers: "143K",
+    niche: "Yoga",
+    avatarBg: "#2D1F6E",
+  },
   {
     initial: "P",
     handle: "@drpallaviahireshelke",
     followers: "70.1K",
     niche: "Dermatology",
+    avatarBg: "#0A2B3D",
   },
   {
     initial: "V",
     handle: "@dr.vaishali_kukreja",
     followers: "64.6K",
     niche: "Doctor",
+    avatarBg: "#0F3D28",
   },
-  { initial: "L", handle: "@ca.laxmi07", followers: "56.6K", niche: "Finance" },
+  {
+    initial: "L",
+    handle: "@ca.laxmi07",
+    followers: "56.6K",
+    niche: "Finance",
+    avatarBg: "#3D1F0A",
+  },
   {
     initial: "I",
     handle: "@thetechnoguy07",
     followers: "46.7K",
     niche: "Tech",
+    avatarBg: "#2B1A0A",
   },
   {
     initial: "K",
     handle: "@ca.kunalkumar",
     followers: "24.9K",
     niche: "Finance",
+    avatarBg: "#0F3320",
   },
 ];
 
-function ClientCard({
+function InstagramIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function CreatorCard({
   client,
   index,
   visible,
@@ -85,131 +138,235 @@ function ClientCard({
   index: number;
   visible: boolean;
 }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div
-      className={`card client-card${visible ? " visible" : ""}`}
-      style={
-        {
-          padding: "24px 22px",
-          position: "relative",
-          overflow: "hidden",
-          "--enter-delay": `${index * 80}ms`,
-        } as React.CSSProperties
-      }
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: "#16161F",
+        border: `0.5px solid ${hovered ? "rgba(108,99,255,0.35)" : "rgba(255,255,255,0.08)"}`,
+        borderRadius: "14px",
+        padding: "18px",
+        display: "flex",
+        flexDirection: "column",
+        cursor: "default",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(16px)",
+        transition: `opacity 0.4s ease ${index * 60}ms, transform 0.4s ease ${index * 60}ms, border-color 0.2s ease`,
+      }}
     >
-      {/* Top accent bar */}
+      {/* Header */}
       <div
-        className="accent-bar"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          height: "2px",
-          background: "#6C63FF",
-          width: "0%",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "14px",
         }}
-      />
+      >
+        {client.photo ? (
+          <img
+            src={client.photo}
+            alt={client.name}
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: "50%",
+              objectFit: "cover",
+              border: "1.5px solid rgba(255,255,255,0.08)",
+              flexShrink: 0,
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: "50%",
+              background: client.avatarBg,
+              border: "1.5px solid rgba(255,255,255,0.08)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#fff",
+              flexShrink: 0,
+            }}
+          >
+            {client.initials}
+          </div>
+        )}
+        <div>
+          <div
+            style={{
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#FFFFFF",
+              lineHeight: 1.3,
+            }}
+          >
+            {client.name}
+          </div>
+          <div
+            style={{
+              fontSize: "11px",
+              color: "rgba(255,255,255,0.35)",
+              marginTop: "2px",
+            }}
+          >
+            {client.handle}
+          </div>
+        </div>
+      </div>
+
+      {/* Niche pill */}
       <div
         style={{
           display: "inline-block",
+          alignSelf: "flex-start",
           fontSize: "10px",
-          fontWeight: 600,
-          color: "#6C63FF",
-          background: "rgba(108,99,255,0.12)",
-          border: "0.5px solid rgba(108,99,255,0.3)",
-          padding: "3px 11px",
+          fontWeight: 500,
+          padding: "3px 10px",
           borderRadius: "20px",
-          marginBottom: "16px",
+          background: "rgba(108,99,255,0.12)",
+          color: "#A09DFF",
+          border: "0.5px solid rgba(108,99,255,0.25)",
         }}
       >
         {client.niche}
       </div>
+
+      {/* Divider */}
       <div
         style={{
-          fontSize: "14px",
-          fontWeight: 700,
-          color: "#FFFFFF",
-          marginBottom: "3px",
+          height: "0.5px",
+          background: "rgba(255,255,255,0.06)",
+          margin: "14px 0",
         }}
-      >
-        {client.handle}
-      </div>
-      <div
-        style={{
-          fontSize: "12px",
-          color: "rgba(255,255,255,0.3)",
-          marginBottom: "20px",
-        }}
-      >
-        {client.name}
-      </div>
-      <div
-        style={{
-          fontSize: "42px",
-          fontWeight: 900,
-          color: "#FFFFFF",
-          letterSpacing: "-2px",
-          lineHeight: 1,
-        }}
-      >
-        {client.followers}
-        <span style={{ color: "#6C63FF" }}>{client.suffix}</span>
+      />
+
+      {/* Follower count */}
+      <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+        <span
+          style={{
+            fontSize: "30px",
+            fontWeight: 800,
+            color: "#FFFFFF",
+            letterSpacing: "-1px",
+            lineHeight: 1,
+          }}
+        >
+          {client.followers}
+        </span>
+        <span
+          style={{
+            fontSize: "20px",
+            fontWeight: 800,
+            color: "#6C63FF",
+            letterSpacing: "-0.5px",
+          }}
+        >
+          {client.suffix}
+        </span>
       </div>
       <div
         style={{
           fontSize: "10px",
-          color: "rgba(255,255,255,0.28)",
-          marginTop: "6px",
+          color: "rgba(255,255,255,0.25)",
           textTransform: "uppercase",
-          letterSpacing: "1.2px",
-          fontWeight: 600,
+          letterSpacing: "1px",
+          fontWeight: 500,
+          marginTop: "5px",
         }}
       >
         Followers
       </div>
+
+      {/* Instagram link */}
+      <a
+        href={`https://instagram.com/${client.handle.replace("@", "")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          marginTop: "14px",
+          fontSize: "11px",
+          color: "rgba(255,255,255,0.3)",
+          textDecoration: "none",
+          transition: "color 0.15s ease",
+        }}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.color = "rgba(255,255,255,0.6)")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.color = "rgba(255,255,255,0.3)")
+        }
+      >
+        <InstagramIcon size={14} />
+        View profile
+      </a>
     </div>
   );
 }
 
-function ClientPill({ client }: { client: (typeof secondaryClients)[0] }) {
+function MarqueePill({ client }: { client: (typeof secondaryClients)[0] }) {
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "12px",
-        padding: "14px 16px",
-        background: "#0F0F17",
-        border: "0.5px solid rgba(255,255,255,0.06)",
-        borderRadius: "50px",
+        gap: "9px",
+        padding: "8px 14px",
+        borderRadius: "40px",
+        background: "#16161F",
+        border: "0.5px solid rgba(255,255,255,0.08)",
         flexShrink: 0,
+        whiteSpace: "nowrap",
       }}
     >
-      <div className="client-avatar">{client.initial}</div>
-      <div>
-        <div
-          style={{
-            fontSize: "13px",
-            fontWeight: 600,
-            color: "rgba(255,255,255,0.85)",
-          }}
-        >
-          {client.handle}
-        </div>
-        <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>
-          {client.followers} · {client.niche}
-        </div>
+      <div
+        style={{
+          width: 26,
+          height: 26,
+          borderRadius: "50%",
+          background: client.avatarBg,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "10px",
+          fontWeight: 600,
+          color: "#fff",
+        }}
+      >
+        {client.initial}
       </div>
+      <span
+        style={{
+          fontSize: "12px",
+          color: "rgba(255,255,255,0.7)",
+          fontWeight: 500,
+        }}
+      >
+        {client.handle}
+      </span>
+      <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>
+        {client.followers}
+      </span>
     </div>
   );
 }
 
 export default function Clients() {
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const [cardsVisible, setCardsVisible] = useState(false);
 
   useEffect(() => {
-    const el = cardsRef.current;
+    const el = gridRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -224,26 +381,66 @@ export default function Clients() {
     return () => observer.disconnect();
   }, []);
 
+  const doubled = [...secondaryClients, ...secondaryClients];
+
   return (
-    <section className="section" id="clients">
-      <div className="label">Our Clients</div>
-      <div className="title">You&apos;re in Good Hands.</div>
-      <p className="subtitle">
+    <section
+      id="clients"
+      style={{
+        background: "#0C0C10",
+        borderRadius: "16px",
+        padding: "40px 32px",
+        fontFamily: "var(--font-sans, system-ui, sans-serif)",
+      }}
+    >
+      {/* Section header */}
+      <div
+        style={{
+          fontSize: "11px",
+          fontWeight: 500,
+          letterSpacing: "1.5px",
+          textTransform: "uppercase",
+          color: "#6C63FF",
+          marginBottom: "10px",
+        }}
+      >
+        Our clients
+      </div>
+      <h2
+        style={{
+          fontSize: "28px",
+          fontWeight: 700,
+          color: "#FFFFFF",
+          lineHeight: 1.2,
+          margin: "0 0 8px",
+        }}
+      >
+        You&apos;re in good hands.
+      </h2>
+      <p
+        style={{
+          fontSize: "14px",
+          color: "rgba(255,255,255,0.4)",
+          marginBottom: "28px",
+          maxWidth: "480px",
+          lineHeight: 1.6,
+        }}
+      >
         India&apos;s top creators trust Raya Social to manage their content,
         growth, and brand.
       </p>
 
+      {/* Featured creators grid */}
       <div
-        ref={cardsRef}
+        ref={gridRef}
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "14px",
-          marginBottom: "18px",
+          gap: "12px",
         }}
       >
         {featuredClients.map((client, i) => (
-          <ClientCard
+          <CreatorCard
             key={client.handle}
             client={client}
             index={i}
@@ -252,40 +449,64 @@ export default function Clients() {
         ))}
       </div>
 
+      {/* "And these creators too..." */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           gap: "8px",
-          margin: "28px 0 18px",
+          margin: "24px 0 14px",
         }}
       >
         <div
           style={{
-            width: "6px",
-            height: "6px",
-            background: "#6C63FF",
+            width: 5,
+            height: 5,
             borderRadius: "50%",
+            background: "rgba(255,255,255,0.15)",
           }}
         />
-        <div
+        <span
           style={{
-            fontSize: "13px",
-            color: "rgba(255,255,255,0.4)",
+            fontSize: "12px",
+            color: "rgba(255,255,255,0.3)",
             fontStyle: "italic",
           }}
         >
           And these creators too...
-        </div>
+        </span>
       </div>
 
-      <div className="marquee-wrapper">
-        <div className="marquee-track">
-          {[...secondaryClients, ...secondaryClients].map((client, i) => (
-            <ClientPill key={`${client.handle}-${i}`} client={client} />
+      {/* Marquee */}
+      <div style={{ overflow: "hidden" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            width: "max-content",
+            animation: "marquee 20s linear infinite",
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLDivElement).style.animationPlayState =
+              "paused")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLDivElement).style.animationPlayState =
+              "running")
+          }
+        >
+          {doubled.map((client, i) => (
+            <MarqueePill key={`${client.handle}-${i}`} client={client} />
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 }

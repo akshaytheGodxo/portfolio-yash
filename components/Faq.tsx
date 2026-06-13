@@ -7,12 +7,7 @@ type FAQItem = {
   answer: string;
 };
 
-const faqLeft: FAQItem[] = [
-  {
-    question: "Do you work with creators outside Raipur?",
-    answer:
-      "Yes — most of our clients are pan-India personal brands. We manage everything remotely.",
-  },
+const faqs: FAQItem[] = [
   {
     question: "How fast do you deliver edited videos?",
     answer:
@@ -23,9 +18,6 @@ const faqLeft: FAQItem[] = [
     answer:
       "No. All editing is done by real human editors. Every cut, transition, and sound decision is made by a person who understands your niche.",
   },
-];
-
-const faqRight: FAQItem[] = [
   {
     question: "What niches do you specialise in?",
     answer:
@@ -43,80 +35,65 @@ const faqRight: FAQItem[] = [
   },
 ];
 
-function FAQAccordion({ items }: { items: FAQItem[] }) {
+export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
-  return (
-    <div>
-      {items.map((item, i) => (
-        <div
-          key={item.question}
-          style={{
-            borderBottom: "0.5px solid rgba(255,255,255,0.07)",
-            padding: "20px 0",
-            cursor: "pointer",
-          }}
-          onClick={() => toggle(i)}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontSize: "14px",
-              fontWeight: 600,
-              color: "#FFFFFF",
-            }}
-          >
-            {item.question}
-            <span
-              style={{
-                fontSize: "18px",
-                color: "#6C63FF",
-                fontWeight: 300,
-                flexShrink: 0,
-                marginLeft: "16px",
-              }}
-            >
-              {openIndex === i ? "−" : "+"}
-            </span>
-          </div>
-          {openIndex === i && (
-            <div
-              style={{
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.4)",
-                lineHeight: 1.75,
-                marginTop: "14px",
-              }}
-            >
-              {item.answer}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default function FAQ() {
   return (
     <section className="section" id="faq">
       <div className="label">FAQs</div>
       <div className="title">Questions Before the Call</div>
       <p className="subtitle">Everything people ask before working with us.</p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "0 56px",
-        }}
-      >
-        <FAQAccordion items={faqLeft} />
-        <FAQAccordion items={faqRight} />
+      <div>
+        {faqs.map((item, i) => (
+          <div
+            key={item.question}
+            onClick={() => toggle(i)}
+            style={{
+              borderBottom: "0.5px solid rgba(255,255,255,0.07)",
+              padding: "20px 0",
+              cursor: "pointer",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                fontSize: "14px",
+                fontWeight: 600,
+                color: "#FFFFFF",
+              }}
+            >
+              {item.question}
+              <span
+                style={{
+                  fontSize: "18px",
+                  color: "#6C63FF",
+                  fontWeight: 300,
+                  flexShrink: 0,
+                  marginLeft: "16px",
+                }}
+              >
+                {openIndex === i ? "−" : "+"}
+              </span>
+            </div>
+            {openIndex === i && (
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "rgba(255,255,255,0.4)",
+                  lineHeight: 1.75,
+                  marginTop: "14px",
+                }}
+              >
+                {item.answer}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );
