@@ -11,7 +11,7 @@ const featuredClients = [
     suffix: "M",
     initials: "PA",
     avatarBg: "#2D1F6E",
-    photo: null, // replace with image path e.g. "/photos/payal.jpg"
+    photo: "/clients/payal_mukharjee.jpg", // replace with image path e.g. "/photos/payal.jpg"
   },
   {
     handle: "@topstocker24",
@@ -21,7 +21,7 @@ const featuredClients = [
     suffix: "K",
     initials: "VK",
     avatarBg: "#0F3D28",
-    photo: null,
+    photo: "/clients/top_stocker.jpg",
   },
   {
     handle: "@creative.thrives",
@@ -31,7 +31,7 @@ const featuredClients = [
     suffix: "K",
     initials: "AR",
     avatarBg: "#3D1F0A",
-    photo: null,
+    photo: "/clients/creative_thrives.jpg",
   },
   {
     handle: "@nupuurpatil",
@@ -41,17 +41,17 @@ const featuredClients = [
     suffix: "K",
     initials: "NP",
     avatarBg: "#0A2B3D",
-    photo: null,
+    photo: "/clients/nupur_patil.jpg",
   },
   {
-    handle: "@financewithmadhav",
-    name: "Madhav Bhatia",
-    niche: "Finance",
-    followers: "315",
+    handle: "@dr.vaishali_kukreja",
+    name: "Dr Vaishali Kukreja",
+    niche: "Nutrition",
+    followers: "65.2",
     suffix: "K",
-    initials: "MB",
+    initials: "VK",
     avatarBg: "#2B1A0A",
-    photo: null,
+    photo: "/clients/vaishali_kukreja.jpg",
   },
   {
     handle: "@fit.with.rishi",
@@ -61,7 +61,7 @@ const featuredClients = [
     suffix: "K",
     initials: "R",
     avatarBg: "#0F3320",
-    photo: null,
+    photo: "/clients/fit_with_rishi.jpg",
   },
 ];
 
