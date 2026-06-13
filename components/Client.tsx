@@ -76,16 +76,26 @@ const secondaryClients = [
   },
 ];
 
-function ClientCard({ client, index, visible }: { client: (typeof featuredClients)[0]; index: number; visible: boolean }) {
+function ClientCard({
+  client,
+  index,
+  visible,
+}: {
+  client: (typeof featuredClients)[0];
+  index: number;
+  visible: boolean;
+}) {
   return (
     <div
       className={`card client-card${visible ? " visible" : ""}`}
-      style={{
-        padding: "24px 22px",
-        position: "relative",
-        overflow: "hidden",
-        "--enter-delay": `${index * 80}ms`,
-      } as React.CSSProperties}
+      style={
+        {
+          padding: "24px 22px",
+          position: "relative",
+          overflow: "hidden",
+          "--enter-delay": `${index * 80}ms`,
+        } as React.CSSProperties
+      }
     >
       {/* Top accent bar */}
       <div
@@ -208,7 +218,7 @@ export default function Clients() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -219,8 +229,8 @@ export default function Clients() {
       <div className="label">Our Clients</div>
       <div className="title">You&apos;re in Good Hands.</div>
       <p className="subtitle">
-        India&apos;s top creators trust Raya Social to manage their content, growth,
-        and brand.
+        India&apos;s top creators trust Raya Social to manage their content,
+        growth, and brand.
       </p>
 
       <div
@@ -233,7 +243,12 @@ export default function Clients() {
         }}
       >
         {featuredClients.map((client, i) => (
-          <ClientCard key={client.handle} client={client} index={i} visible={cardsVisible} />
+          <ClientCard
+            key={client.handle}
+            client={client}
+            index={i}
+            visible={cardsVisible}
+          />
         ))}
       </div>
 

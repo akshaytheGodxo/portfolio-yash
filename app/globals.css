@@ -215,23 +215,47 @@ nav a:hover {
 /* ========== ANIMATIONS ========== */
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(200%); }
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(200%);
+  }
 }
 
 @keyframes clientEnter {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Fade-up sections */
@@ -301,14 +325,14 @@ nav a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   transition: background 0.3s ease-out;
   z-index: 1;
   pointer-events: none;
 }
 
 .thumb-overlay:hover::before {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .play-btn-inner {
@@ -346,14 +370,12 @@ nav a:hover {
   left: 0;
   width: 80%;
   height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255,255,255,0.1) 45%,
-    rgba(255,255,255,0.12) 50%,
-    rgba(255,255,255,0.1) 55%,
-    transparent 70%
-  );
+  background: linear-gradient(105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 45%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.1) 55%,
+      transparent 70%);
   transform: translateX(-100%);
   pointer-events: none;
 }
@@ -387,6 +409,7 @@ nav a:hover {
 
 /* prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -415,5 +438,275 @@ nav a:hover {
 
   .btn-shimmer::after {
     display: none;
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet and above (768px) */
+@media (max-width: 1024px) {
+  .section {
+    padding: 56px 28px;
+  }
+
+  .title {
+    font-size: 28px;
+    letter-spacing: -1.1px;
+  }
+
+  .subtitle {
+    margin-bottom: 32px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    font-size: 12px;
+    padding: 11px 20px;
+  }
+}
+
+/* Large mobile devices and tablets (640px - 1024px) */
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 20px;
+  }
+
+  .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-size: 24px;
+    letter-spacing: -0.9px;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+
+  .pill {
+    font-size: 9px;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    font-size: 11px;
+    padding: 10px 18px;
+  }
+
+  .card {
+    border-radius: 10px;
+  }
+
+  .svc-icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 14px;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .client-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .t-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .marquee-track {
+    gap: 8px;
+  }
+}
+
+/* Small mobile devices (480px - 640px) */
+@media (max-width: 640px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-size: 20px;
+    letter-spacing: -0.8px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+
+  .pill {
+    font-size: 8px;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    font-size: 10px;
+    padding: 9px 16px;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-0.5px);
+  }
+
+  .card {
+    border-radius: 8px;
+  }
+
+  .svc-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .client-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 11px;
+  }
+
+  .t-avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 11px;
+  }
+
+  .play-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .play-circle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .marquee-track {
+    gap: 6px;
+  }
+}
+
+/* Extra small mobile devices (< 480px) */
+@media (max-width: 480px) {
+  .section {
+    padding: 32px 12px;
+  }
+
+  .label {
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-size: 18px;
+    letter-spacing: -0.7px;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+
+  .pill {
+    font-size: 7px;
+    padding: 2px 8px;
+    margin-bottom: 12px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    font-size: 9px;
+    padding: 8px 14px;
+  }
+
+  .card {
+    border-radius: 8px;
+  }
+
+  .svc-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 10px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .client-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 10px;
+  }
+
+  .t-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 10px;
+  }
+
+  .play-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .play-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .marquee-track {
+    gap: 4px;
+  }
+}
+
+/* Ultra-wide screens (1440px+) */
+@media (min-width: 1440px) {
+  .section {
+    padding: 96px 48px;
+  }
+
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 48px;
   }
 }

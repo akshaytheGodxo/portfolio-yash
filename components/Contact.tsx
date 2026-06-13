@@ -62,7 +62,145 @@ export default function Contact() {
         background: "#0E0D1A",
         borderBottom: "0.5px solid rgba(255,255,255,0.06)",
       }}
+      className="contact-section"
     >
+      <style>{`
+        .contact-section {
+          padding: 72px 36px;
+        }
+
+        @media (max-width: 768px) {
+          .contact-section {
+            padding: 56px 28px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .contact-section {
+            padding: 48px 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .contact-section {
+            padding: 40px 16px;
+          }
+        }
+        .contact-wrapper {
+          max-width: 540px;
+          margin: 0 auto 28px;
+        }
+
+        .contact-options {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+          .contact-wrapper {
+            margin-bottom: 20px;
+          }
+
+          .contact-options {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+
+        .contact-option {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 18px 20px;
+          border-radius: 12px;
+          cursor: pointer;
+          text-decoration: none;
+          flex-wrap: wrap;
+        }
+
+        @media (max-width: 480px) {
+          .contact-option {
+            padding: 14px 12px;
+            gap: 10px;
+            font-size: 12px;
+          }
+
+          .contact-icon {
+            width: 36px !important;
+            height: 36px !important;
+          }
+
+          .contact-text {
+            text-align: left;
+            flex: 1;
+          }
+        }
+
+        .contact-form-wrapper {
+          background: #111119;
+          border: 0.5px solid rgba(255,255,255,0.08);
+          border-radius: 16px;
+          padding: 36px;
+          max-width: 540px;
+          margin: 0 auto;
+          text-align: left;
+        }
+
+        @media (max-width: 768px) {
+          .contact-form-wrapper {
+            padding: 24px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .contact-form-wrapper {
+            padding: 16px;
+          }
+        }
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+          .form-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .form-grid {
+            margin-bottom: 10px;
+          }
+        }
+
+        .divider {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin: 26px 0;
+        }
+
+        @media (max-width: 768px) {
+          .divider {
+            margin: 20px 0;
+            gap: 10px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .divider {
+            margin: 16px 0;
+            gap: 8px;
+            font-size: 10px;
+          }
+        }
+      `}</style>
       <div className="pill" style={{ marginBottom: "22px" }}>
         Limited Spots · Apply Now
       </div>
@@ -98,7 +236,7 @@ export default function Contact() {
       </p>
 
       {/* Direct contact options */}
-      <div style={{ maxWidth: "540px", margin: "0 auto 28px" }}>
+      <div className="contact-wrapper">
         <div
           style={{
             fontSize: "11px",
@@ -112,31 +250,20 @@ export default function Contact() {
           Reach us directly
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "12px",
-          }}
-        >
+        <div className="contact-options">
           {/* WhatsApp */}
           <a
             href="https://wa.me/919999999999"
             target="_blank"
             rel="noopener noreferrer"
+            className="contact-option"
             style={{
               background: "#0f1a0f",
               border: "0.5px solid rgba(37,211,102,0.3)",
-              borderRadius: "12px",
-              padding: "18px 20px",
-              display: "flex",
-              alignItems: "center",
-              gap: "14px",
-              cursor: "pointer",
-              textDecoration: "none",
             }}
           >
             <div
+              className="contact-icon"
               style={{
                 width: "42px",
                 height: "42px",
@@ -152,7 +279,7 @@ export default function Contact() {
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
               </svg>
             </div>
-            <div style={{ textAlign: "left" }}>
+            <div className="contact-text">
               <div
                 style={{
                   fontSize: "13px",
@@ -184,19 +311,14 @@ export default function Contact() {
           {/* Email */}
           <a
             href="mailto:hello@rayasocial.in"
+            className="contact-option"
             style={{
               background: "#0f0f1a",
               border: "0.5px solid rgba(108,99,255,0.3)",
-              borderRadius: "12px",
-              padding: "18px 20px",
-              display: "flex",
-              alignItems: "center",
-              gap: "14px",
-              cursor: "pointer",
-              textDecoration: "none",
             }}
           >
             <div
+              className="contact-icon"
               style={{
                 width: "42px",
                 height: "42px",
@@ -222,7 +344,7 @@ export default function Contact() {
                 <polyline points="22,6 12,13 2,6" />
               </svg>
             </div>
-            <div style={{ textAlign: "left" }}>
+            <div className="contact-text">
               <div
                 style={{
                   fontSize: "13px",
@@ -253,14 +375,7 @@ export default function Contact() {
         </div>
 
         {/* Divider */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "14px",
-            margin: "26px 0",
-          }}
-        >
+        <div className="divider">
           <div
             style={{
               flex: 1,
@@ -290,17 +405,7 @@ export default function Contact() {
       </div>
 
       {/* Contact form */}
-      <div
-        style={{
-          background: "#111119",
-          border: "0.5px solid rgba(255,255,255,0.08)",
-          borderRadius: "16px",
-          padding: "36px",
-          maxWidth: "540px",
-          margin: "0 auto",
-          textAlign: "left",
-        }}
-      >
+      <div className="contact-form-wrapper">
         <div
           style={{
             fontSize: "15px",
@@ -312,14 +417,7 @@ export default function Contact() {
           Tell us about your brand
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "12px",
-            marginBottom: "12px",
-          }}
-        >
+        <div className="form-grid">
           <div>
             <label style={labelStyle} htmlFor="name">
               Your Name
@@ -348,14 +446,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "12px",
-            marginBottom: "12px",
-          }}
-        >
+        <div className="form-grid">
           <div>
             <label style={labelStyle} htmlFor="handle">
               Instagram Handle

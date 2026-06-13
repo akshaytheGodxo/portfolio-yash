@@ -80,6 +80,33 @@ function StepCard({ step }: { step: Step }) {
 export default function Process() {
   return (
     <section className="section" id="process">
+      <style>{`
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 14px;
+        }
+
+        @media (max-width: 1024px) {
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .process-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .process-grid {
+            gap: 10px;
+          }
+        }
+      `}</style>
+
       <div className="label">How It Works</div>
       <div className="title">
         From Zero to Viral
@@ -90,13 +117,7 @@ export default function Process() {
         A repeatable system. Same process, every client, every month.
       </p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "14px",
-        }}
-      >
+      <div className="process-grid">
         {steps.map((step) => (
           <StepCard key={step.number} step={step} />
         ))}

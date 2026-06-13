@@ -143,6 +143,54 @@ function ServiceCard({ service }: { service: Service }) {
           : undefined,
       }}
     >
+      <style>{`
+        .service-card-container {
+          padding: 28px 26px;
+        }
+
+        @media (max-width: 1024px) {
+          .service-card-container {
+            padding: 22px 20px;
+          }
+
+          .service-title {
+            font-size: 14px;
+          }
+
+          .service-description {
+            font-size: 12px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .service-card-container {
+            padding: 18px 16px;
+          }
+
+          .service-title {
+            font-size: 13px;
+          }
+
+          .service-description {
+            font-size: 11px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .service-card-container {
+            padding: 14px 12px;
+          }
+
+          .service-title {
+            font-size: 12px;
+          }
+
+          .service-description {
+            font-size: 10px;
+          }
+        }
+      `}</style>
+
       {service.popular && (
         <div
           style={{
@@ -169,6 +217,7 @@ function ServiceCard({ service }: { service: Service }) {
         {service.icon}
       </div>
       <div
+        className="service-title"
         style={{
           fontSize: "15px",
           fontWeight: 700,
@@ -179,6 +228,7 @@ function ServiceCard({ service }: { service: Service }) {
         {service.title}
       </div>
       <div
+        className="service-description"
         style={{
           fontSize: "13px",
           color: "rgba(255,255,255,0.4)",
@@ -194,6 +244,65 @@ function ServiceCard({ service }: { service: Service }) {
 export default function Services() {
   return (
     <section className="section" id="services">
+      <style>{`
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+          margin-bottom: 32px;
+        }
+
+        .service-card {
+          padding: 28px 26px;
+        }
+
+        @media (max-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+
+          .service-card {
+            padding: 22px 20px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+
+          .service-card {
+            padding: 18px 16px;
+          }
+        }
+
+        .cta-banner {
+          background: #0E0D1A;
+          border: 0.5px solid rgba(108,99,255,0.25);
+          border-radius: 14px;
+          padding: 26px 30px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+          .cta-banner {
+            padding: 20px 18px;
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .cta-banner button {
+            width: 100%;
+          }
+        }
+      `}</style>
+
       <div className="label">What We Do</div>
       <div className="title">
         Everything Done For You.
@@ -202,33 +311,16 @@ export default function Services() {
       </div>
       <p className="subtitle">One agency. Six services. Zero excuses.</p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "14px",
-          marginBottom: "32px",
-        }}
-      >
+      <div className="services-grid">
         {services.map((service) => (
-          <ServiceCard key={service.title} service={service} />
+          <div key={service.title} className="service-card">
+            <ServiceCard service={service} />
+          </div>
         ))}
       </div>
 
       {/* CTA Banner */}
-      <div
-        style={{
-          background: "#0E0D1A",
-          border: "0.5px solid rgba(108,99,255,0.25)",
-          borderRadius: "14px",
-          padding: "26px 30px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "16px",
-        }}
-      >
+      <div className="cta-banner">
         <div>
           <div
             style={{
@@ -245,7 +337,9 @@ export default function Services() {
             management — one flat monthly price.
           </div>
         </div>
-        <button className="btn-primary btn-shimmer">Get Custom Pricing →</button>
+        <button className="btn-primary btn-shimmer">
+          Get Custom Pricing →
+        </button>
       </div>
     </section>
   );
