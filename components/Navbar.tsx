@@ -47,7 +47,7 @@ export default function Navbar() {
       {/* Desktop Nav Links */}
       <div
         style={{
-          display: "none",
+          display: "",
         }}
         className="desktop-nav"
       >
