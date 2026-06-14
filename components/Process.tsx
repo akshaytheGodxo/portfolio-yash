@@ -1,126 +1,121 @@
-type Step = {
-  number: string;
-  title: string;
-  description: string;
-  timeline: string;
-};
+import { motion } from "motion/react";
 
-const steps: Step[] = [
+const steps = [
   {
-    number: "01",
+    num: "01",
     title: "Strategy Call",
-    description:
-      "We understand your niche, audience, voice, and goals before writing a single word.",
-    timeline: "Day 1–2",
+    desc: "We understand your niche, audience, voice, and goals before writing a single word.",
+    time: "Day 1–2",
   },
   {
-    number: "02",
+    num: "02",
     title: "Scripts & Calendar",
-    description:
-      "Trending topics, hook-driven scripts, full month's calendar — shared for your approval.",
-    timeline: "Day 3–5",
+    desc: "Trending topics, hook-driven scripts, full month's calendar — shared for approval.",
+    time: "Day 3–5",
   },
   {
-    number: "03",
+    num: "03",
     title: "Edit & Deliver",
-    description:
-      "Cinematic edits with captions, effects, and sound design. Delivered in 48 hours flat.",
-    timeline: "Day 5–7",
+    desc: "Cinematic edits with captions, effects, and sound design. Delivered in 48 hours.",
+    time: "Day 5–7",
   },
   {
-    number: "04",
+    num: "04",
     title: "Post & Grow",
-    description:
-      "Posting, community management, and monthly reporting — fully handled, every month.",
-    timeline: "Ongoing",
+    desc: "Posting, community management, and monthly reporting — fully handled.",
+    time: "Ongoing",
   },
 ];
 
-function StepCard({ step }: { step: Step }) {
-  return (
-    <div className="card" style={{ padding: "26px 22px" }}>
-      <div className="step-number" style={{ marginBottom: "20px" }}>
-        {step.number}
-      </div>
-      <div
-        style={{
-          fontSize: "13px",
-          fontWeight: 700,
-          color: "#FFFFFF",
-          marginBottom: "10px",
-        }}
-      >
-        {step.title}
-      </div>
-      <div
-        style={{
-          fontSize: "12px",
-          color: "rgba(255,255,255,0.4)",
-          lineHeight: 1.7,
-          marginBottom: "16px",
-        }}
-      >
-        {step.description}
-      </div>
-      <div
-        style={{
-          fontSize: "10px",
-          color: "rgba(255,255,255,0.22)",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "1.2px",
-        }}
-      >
-        {step.timeline}
-      </div>
-    </div>
-  );
-}
-
 export default function Process() {
   return (
-    <section className="section" id="process">
-      <style>{`
-        .process-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 14px;
-        }
+    <section id="process" className="section">
+      <div className="container">
+        <header className="section-header section-header--center">
+          <span className="label">How it works</span>
+          <h2 className="heading heading--sm">From zero to viral in 7 days.</h2>
+          <p className="lede">A repeatable system. Same process, every client, every month.</p>
+        </header>
 
-        @media (max-width: 1024px) {
-          .process-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
+        {/* Desktop timeline */}
+        <div className="relative hidden md:block">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ originX: 0.5 }}
+            className="absolute left-[10%] right-[10%] top-6 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"
+          />
+          <div className="grid grid-cols-4 gap-6">
+            {steps.map((step, idx) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.4, delay: idx * 0.15 }}
+                className="flex flex-col items-center"
+              >
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[var(--accent-border)] bg-[var(--bg)] text-sm font-bold text-[var(--accent)]">
+                  {step.num}
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20, boxShadow: "0 0 0px rgba(108,99,255,0)" }}
+                  whileInView={{ opacity: 1, y: 0, boxShadow: "0 0 30px rgba(108,99,255,0.08)" }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 + 0.15 }}
+                  className="mt-5 w-full rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 text-center transition-colors hover:border-[var(--accent-border)]"
+                >
+                  <h3 className="text-sm font-bold text-[var(--text)]">{step.title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--text-secondary)]">{step.desc}</p>
+                  <span className="mt-3 block text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">{step.time}</span>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
-        @media (max-width: 768px) {
-          .process-grid {
-            grid-template-columns: 1fr;
-            gap: 12px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .process-grid {
-            gap: 10px;
-          }
-        }
-      `}</style>
-
-      <div className="label">How It Works</div>
-      <div className="title">
-        From Zero to Viral
-        <br />
-        in 7 Days
-      </div>
-      <p className="subtitle">
-        A repeatable system. Same process, every client, every month.
-      </p>
-
-      <div className="process-grid">
-        {steps.map((step) => (
-          <StepCard key={step.number} step={step} />
-        ))}
+        {/* Mobile timeline */}
+        <div className="relative md:hidden">
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ originY: 0 }}
+            className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-[var(--accent)] via-[var(--accent-border)] to-transparent"
+          />
+          <div className="flex flex-col gap-8">
+            {steps.map((step, idx) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.4, delay: idx * 0.15 }}
+                className="relative flex items-start gap-5 pl-14"
+              >
+                <div className="absolute left-3 z-10 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[var(--accent-border)] bg-[var(--bg)] text-[10px] font-bold text-[var(--accent)]">
+                  {step.num}
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20, boxShadow: "0 0 0px rgba(108,99,255,0)" }}
+                  whileInView={{ opacity: 1, y: 0, boxShadow: "0 0 30px rgba(108,99,255,0.08)" }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 + 0.15 }}
+                  className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-4 transition-colors hover:border-[var(--accent-border)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-bold text-[var(--text)]">{step.title}</h3>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">{step.time}</span>
+                  </div>
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--text-secondary)]">{step.desc}</p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

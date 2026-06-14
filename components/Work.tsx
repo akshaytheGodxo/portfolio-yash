@@ -1,182 +1,71 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
+import HoverVideo from "@/components/HoverVideo";
 
-type Video = {
-  videoId: string;
-};
-
-const videos: Video[] = [
-  { videoId: "2wFxWol3ueo" },
-  { videoId: "KHy8uAFqXQU" },
-  { videoId: "eCVRdixqzr8" },
-  { videoId: "vEqE7DnM3cg" },
-  { videoId: "ThlXpUQvasg" },
-  { videoId: "z61BQ0hKCLU" },
-  { videoId: "bfKTpJkl82E" },
-  { videoId: "ZTbZlsrLmII" },
-  { videoId: "ns-HNUGti8c" },
+const videos = [
+  "2wFxWol3ueo", "KHy8uAFqXQU", "eCVRdixqzr8", "vEqE7DnM3cg",
+  "ThlXpUQvasg", "z61BQ0hKCLU", "bfKTpJkl82E", "ZTbZlsrLmII", "ns-HNUGti8c",
 ];
 
-const INITIAL_COUNT = 3;
-
-function VideoCard({ video }: { video: Video }) {
-  return (
-    <div
-      style={{
-        background: "#16161F",
-        border: "0.5px solid rgba(255,255,255,0.08)",
-        borderRadius: "14px",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          paddingBottom: "177.78%", // 9:16
-          height: 0,
-          overflow: "hidden",
-        }}
-      >
-        <iframe
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            border: "none",
-          }}
-          src={`https://www.youtube.com/embed/${video.videoId}?modestbranding=1&rel=0`}
-          title="YouTube video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </div>
-    </div>
-  );
-}
+const VISIBLE = 8;
 
 export default function Work() {
   const [showAll, setShowAll] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
-  const visibleVideos = showAll ? videos : videos.slice(0, INITIAL_COUNT);
-  const hiddenCount = videos.length - INITIAL_COUNT;
+  const list = showAll ? videos : videos.slice(0, VISIBLE);
+  const hidden = videos.length - VISIBLE;
 
   return (
-    <>
-      <style>{`
-        .work-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
-          margin-bottom: 12px;
-        }
+    <section id="work" className="section">
+      <div className="container">
+        <header className="section-header section-header--center">
+          <span className="label">Our work</span>
+          <h2 className="heading heading--sm">Videos we edited for brands you trust.</h2>
+          <p className="lede">Hover to preview. {videos.length} examples from our portfolio.</p>
+        </header>
 
-        @media (max-width: 1024px) {
-          .work-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 480px) {
-          .work-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        .show-more-btn {
-          width: 100%;
-          padding: 14px;
-          background: #16161F;
-          border: 0.5px solid rgba(255,255,255,0.08);
-          border-radius: 14px;
-          color: rgba(255,255,255,0.5);
-          font-size: 13px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: border-color 0.2s ease, color 0.2s ease;
-          margin-bottom: 32px;
-        }
-
-        .show-more-btn:hover {
-          border-color: rgba(108,99,255,0.35);
-          color: #fff;
-        }
-
-        .video-enter {
-          animation: fadeSlideIn 0.35s ease forwards;
-        }
-
-        @keyframes fadeSlideIn {
-          from { opacity: 0; transform: translateY(12px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-
-      <section className="section" id="work" style={{ background: "#0D0D14" }}>
-        <div className="label">Our Work</div>
-        <div className="title">
-          Videos We Edited.
-          <br />
-          For Brands You Trust.
-        </div>
-
-        <div className="work-grid">
-          {visibleVideos.map((video, i) => (
-            <div
-              key={video.videoId}
-              className={i >= INITIAL_COUNT ? "video-enter" : ""}
+        <div className="video-grid">
+          {list.map((id, idx) => (
+            <motion.div
+              key={id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.35, delay: idx * 0.04 }}
             >
-              <VideoCard video={video} />
-            </div>
+              <HoverVideo
+                videoId={id}
+                isActive={activeId === id}
+                onActivate={() => setActiveId(id)}
+                onDeactivate={() => setActiveId((c) => (c === id ? null : c))}
+              />
+            </motion.div>
           ))}
         </div>
 
-        {!showAll && (
-          <button className="show-more-btn" onClick={() => setShowAll(true)}>
-            Show {hiddenCount} more videos ↓
+        {!showAll && hidden > 0 && (
+          <button type="button" className="text-link" onClick={() => setShowAll(true)}>
+            View {hidden} more →
           </button>
         )}
-
         {showAll && (
-          <button className="show-more-btn" onClick={() => setShowAll(false)}>
+          <button type="button" className="text-link" onClick={() => setShowAll(false)}>
             Show less ↑
           </button>
         )}
 
-        {/* Footer */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "16px",
-            paddingTop: "24px",
-            borderTop: "0.5px solid rgba(255,255,255,0.06)",
-          }}
-        >
-          <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
-            <span
-              style={{
-                fontSize: "26px",
-                fontWeight: 900,
-                color: "#fff",
-                letterSpacing: "-1px",
-                marginRight: "6px",
-              }}
-            >
-              {videos.length}
-            </span>
-            videos crafted with precision
-          </div>
-          <button className="btn-primary btn-shimmer">
-            Get Videos Like These →
-          </button>
+        <div className="section-bar">
+          <p className="section-bar__text">
+            <strong>{videos.length}</strong> videos crafted with precision
+          </p>
+          <a href="#contact" className="btn-primary btn-shimmer">
+            Get videos like these →
+          </a>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

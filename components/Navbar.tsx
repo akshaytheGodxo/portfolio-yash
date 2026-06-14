@@ -1,74 +1,80 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+} from "@/components/ui/resizable-navbar";
 
-export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+const navItems = [
+  { name: "Services", link: "#services" },
+  { name: "Work", link: "#work" },
+  { name: "Process", link: "#process" },
+  { name: "FAQs", link: "#faq" },
+];
 
-  const navLinks = [
-    { href: "#clients", label: "Clients" },
-    { href: "#services", label: "Services" },
-    { href: "#work", label: "Work" },
-    { href: "#process", label: "Process" },
-    { href: "#faq", label: "FAQs" },
-  ];
+export default function AppNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-[100] relative box-border flex w-full items-center justify-between border-b border-white/[0.06] bg-[rgba(10,10,15,0.85)] px-3.5 py-3 backdrop-blur-2xl sm:px-5 sm:py-3.5 md:px-9 md:py-[18px]">
-      {/* Logo */}
-      <div className="min-w-fit text-sm font-black tracking-[-0.8px] sm:text-base md:text-[19px]">
-        <span className="text-white">Raya</span>
-        <span className="text-[#6C63FF]">Social</span>
-      </div>
-
-      {/* Desktop nav */}
-      <div className="hidden min-w-0 md:block">
-        <div className="flex items-center gap-0.5">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="nav-link whitespace-nowrap px-3.5 py-2 text-[13px] font-medium text-white/40 transition-colors hover:text-white"
-            >
-              {link.label}
-            </a>
-          ))}
-          <button className="btn-primary btn-shimmer ml-2.5 flex-shrink-0 whitespace-nowrap px-5 py-2.5">
-            Book a Call →
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
-        className="block cursor-pointer border-none bg-none px-2 py-1 text-2xl text-white md:hidden"
-      >
-        ☰
-      </button>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div
-          className="fixed inset-x-0 top-[57px] bg-[#0A0A0F]      z-[99999]
- flex max-h-[calc(100vh-57px)] flex-col gap-1 overflow-y-auto border-b border-white/[0.06]  p-4 text-xs shadow-2xl md:hidden"
+    <Navbar className="top-0">
+      <NavBody>
+        <Link
+          href="/"
+          className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
         >
-          {navLinks.map((link) => (
+          <span className="font-bold text-[var(--text)]">
+            Raya<span className="text-[#6C63FF]">Social</span>
+          </span>
+        </Link>
+        <NavItems items={navItems} />
+        <a
+          href="#contact"
+          className="hidden rounded-full bg-[var(--accent)] px-6 py-2 text-sm font-semibold text-white transition-all hover:bg-[#5a52e0] md:block"
+        >
+          Book a call
+        </a>
+      </NavBody>
+      <MobileNav>
+        <MobileNavHeader>
+          <Link
+            href="/"
+            className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+          >
+            <span className="font-bold text-[var(--text)]">
+              Raya<span className="text-[#6C63FF]">Social</span>
+            </span>
+          </Link>
+          <MobileNavToggle
+            isOpen={isOpen}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+        </MobileNavHeader>
+        <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          {navItems.map((item, idx) => (
             <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-md px-3.5 py-2.5 font-medium text-white/40 transition-colors hover:bg-white/5 hover:text-white"
+              key={`mobile-link-${idx}`}
+              href={item.link}
+              onClick={() => setIsOpen(false)}
+              className="relative text-[var(--text-secondary)]"
             >
-              {link.label}
+              <span className="block">{item.name}</span>
             </a>
           ))}
-          <button className="btn-primary btn-shimmer mt-2 px-5 py-2.5">
-            Book a Call →
-          </button>
-        </div>
-      )}
-    </nav>
+          <a
+            href="#contact"
+            className="mt-2 w-full rounded-lg bg-[var(--accent)] px-8 py-2.5 text-center text-sm font-semibold text-white transition-all hover:bg-[#5a52e0]"
+          >
+            Book a call
+          </a>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   );
 }

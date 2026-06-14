@@ -2,98 +2,57 @@
 
 import { useState } from "react";
 
-type FAQItem = {
-  question: string;
-  answer: string;
-};
-
-const faqs: FAQItem[] = [
+const faqs = [
   {
-    question: "How fast do you deliver edited videos?",
-    answer:
-      "Standard turnaround is 48 hours per video. Rush 24-hour delivery is available for retainer clients at no extra cost.",
+    q: "How fast do you deliver edited videos?",
+    a: "Standard turnaround is 48 hours per video. Rush 24-hour delivery is available for retainer clients at no extra cost.",
   },
   {
-    question: "Do you use AI for editing?",
-    answer:
-      "No. All editing is done by real human editors. Every cut, transition, and sound decision is made by a person who understands your niche.",
+    q: "Do you use AI for editing?",
+    a: "No. All editing is done by real human editors who understand your niche.",
   },
   {
-    question: "What niches do you specialise in?",
-    answer:
-      "Finance, health and fitness, wellness, education, and infotainment. These are the niches where our editors have the deepest experience and proven results.",
+    q: "What niches do you specialise in?",
+    a: "Finance, health and fitness, wellness, education, and infotainment.",
   },
   {
-    question: "What is the minimum to work with you?",
-    answer:
-      "We have options for both video editing only and full account management. Book a call and we'll figure out what makes sense for your stage and goals.",
+    q: "What is the minimum to work with you?",
+    a: "We offer video editing only and full account management. Book a call and we'll find what fits your stage.",
   },
   {
-    question: "How do I get started?",
-    answer:
-      "Fill the form below or WhatsApp us directly. We'll schedule a free 30-minute strategy call to understand your goals and tell you exactly what we'd do for your brand.",
+    q: "How do I get started?",
+    a: "Fill the form below or WhatsApp us. We'll schedule a free 30-minute strategy call.",
   },
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="section" id="faq">
-      <div className="label">FAQs</div>
-      <div className="title">Questions Before the Call</div>
-      <p className="subtitle">Everything people ask before working with us.</p>
+    <section id="faq" className="section">
+      <div className="container">
+        <header className="section-header section-header--center">
+          <span className="label">FAQs</span>
+          <h2 className="heading heading--sm">Questions before the call.</h2>
+          <p className="lede">Everything people ask before working with us.</p>
+        </header>
 
-      <div>
-        {faqs.map((item, i) => (
-          <div
-            key={item.question}
-            onClick={() => toggle(i)}
-            style={{
-              borderBottom: "0.5px solid rgba(255,255,255,0.07)",
-              padding: "20px 0",
-              cursor: "pointer",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                fontSize: "14px",
-                fontWeight: 600,
-                color: "#FFFFFF",
-              }}
-            >
-              {item.question}
-              <span
-                style={{
-                  fontSize: "18px",
-                  color: "#6C63FF",
-                  fontWeight: 300,
-                  flexShrink: 0,
-                  marginLeft: "16px",
-                }}
+        <div className="faq-list">
+          {faqs.map((item, i) => (
+            <div key={item.q} className="faq-item">
+              <button
+                type="button"
+                className="faq-item__btn"
+                aria-expanded={open === i}
+                onClick={() => setOpen(open === i ? null : i)}
               >
-                {openIndex === i ? "−" : "+"}
-              </span>
+                <span>{item.q}</span>
+                <span className="faq-item__icon">{open === i ? "−" : "+"}</span>
+              </button>
+              {open === i && <div className="faq-item__answer">{item.a}</div>}
             </div>
-            {openIndex === i && (
-              <div
-                style={{
-                  fontSize: "13px",
-                  color: "rgba(255,255,255,0.4)",
-                  lineHeight: 1.75,
-                  marginTop: "14px",
-                }}
-              >
-                {item.answer}
-              </div>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
