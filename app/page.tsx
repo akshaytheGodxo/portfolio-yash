@@ -17,17 +17,37 @@ export default function Home() {
   return (
     <main>
       <FloatingWhatsApp />
-      <FadeUp><Navbar /></FadeUp>
-      <FadeUp><Hero /></FadeUp>
-      <FadeUp><Clients /></FadeUp>
-      <FadeUp><Services /></FadeUp>
-      <FadeUp><Work /></FadeUp>
-      <FadeUp><Testimonials /></FadeUp>
-      <FadeUp><WhyUs /></FadeUp>
-      <FadeUp><Process /></FadeUp>
-      <FadeUp><FAQ /></FadeUp>
-      <FadeUp><Contact /></FadeUp>
-      <FadeUp><Footer /></FadeUp>
+      <FadeUp>
+        <Navbar /> <Hero />
+      </FadeUp>
+
+      <FadeUp>
+        <Clients />
+      </FadeUp>
+      <FadeUp>
+        <Services />
+      </FadeUp>
+      <FadeUp>
+        <Work />
+      </FadeUp>
+      <FadeUp>
+        <Testimonials />
+      </FadeUp>
+      <FadeUp>
+        <WhyUs />
+      </FadeUp>
+      <FadeUp>
+        <Process />
+      </FadeUp>
+      <FadeUp>
+        <FAQ />
+      </FadeUp>
+      <FadeUp>
+        <Contact />
+      </FadeUp>
+      <FadeUp>
+        <Footer />
+      </FadeUp>
     </main>
   );
 }
