@@ -1,3 +1,5 @@
+import React from "react";
+
 type Reason = {
   title: string;
   description: string;
@@ -99,6 +101,7 @@ function ReasonCard({ reason }: { reason: Reason }) {
           alignItems: "center",
           justifyContent: "center",
           marginBottom: "20px",
+          flexShrink: 0,
         }}
       >
         {reason.icon}
@@ -128,28 +131,46 @@ function ReasonCard({ reason }: { reason: Reason }) {
 
 export default function WhyUs() {
   return (
-    <section className="section" style={{ background: "#0D0D14" }}>
-      <div className="label">Why Raya Social</div>
-      <div className="title">
-        Why India's Top Creators
-        <br />
-        Choose Us.
-      </div>
-      <p className="subtitle">
-        Four things every client gets — that most agencies can't deliver.
-      </p>
+    <>
+      <style>{`
+        .whyus-title {
+          font-size: 32px;
+        }
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "14px",
-        }}
-      >
-        {reasons.map((reason) => (
-          <ReasonCard key={reason.title} reason={reason} />
-        ))}
-      </div>
-    </section>
+        .whyus-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+        }
+
+        @media (max-width: 640px) {
+          .whyus-title {
+            font-size: 24px;
+          }
+
+          .whyus-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+      <section className="section" style={{ background: "#0D0D14" }}>
+        <div className="label">Why Raya Social</div>
+        <div className="title whyus-title">
+          Why India&apos;s Top Creators
+          <br />
+          Choose Us.
+        </div>
+        <p className="subtitle">
+          Four things every client gets — that most agencies can&apos;t deliver.
+        </p>
+
+        <div className="whyus-grid">
+          {reasons.map((reason) => (
+            <ReasonCard key={reason.title} reason={reason} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

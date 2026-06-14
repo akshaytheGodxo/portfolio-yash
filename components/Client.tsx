@@ -11,7 +11,7 @@ const featuredClients = [
     suffix: "M",
     initials: "PA",
     avatarBg: "#2D1F6E",
-    photo: "/clients/payal_mukharjee.jpg", // replace with image path e.g. "/photos/payal.jpg"
+    photo: "/clients/payal_mukharjee.jpg",
   },
   {
     handle: "@topstocker24",
@@ -199,13 +199,16 @@ function CreatorCard({
             {client.initials}
           </div>
         )}
-        <div>
+        <div style={{ minWidth: 0 }}>
           <div
             style={{
               fontSize: "13px",
               fontWeight: 600,
               color: "#FFFFFF",
               lineHeight: 1.3,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
           >
             {client.name}
@@ -215,6 +218,9 @@ function CreatorCard({
               fontSize: "11px",
               color: "rgba(255,255,255,0.35)",
               marginTop: "2px",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
           >
             {client.handle}
@@ -234,6 +240,7 @@ function CreatorCard({
           background: "rgba(108,99,255,0.12)",
           color: "#A09DFF",
           border: "0.5px solid rgba(108,99,255,0.25)",
+          whiteSpace: "nowrap",
         }}
       >
         {client.niche}
@@ -252,7 +259,7 @@ function CreatorCard({
       <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
         <span
           style={{
-            fontSize: "30px",
+            fontSize: "clamp(22px, 5vw, 30px)",
             fontWeight: 800,
             color: "#FFFFFF",
             letterSpacing: "-1px",
@@ -263,7 +270,7 @@ function CreatorCard({
         </span>
         <span
           style={{
-            fontSize: "20px",
+            fontSize: "clamp(16px, 3.5vw, 20px)",
             fontWeight: 800,
             color: "#6C63FF",
             letterSpacing: "-0.5px",
@@ -341,6 +348,7 @@ function MarqueePill({ client }: { client: (typeof secondaryClients)[0] }) {
           fontSize: "10px",
           fontWeight: 600,
           color: "#fff",
+          flexShrink: 0,
         }}
       >
         {client.initial}
@@ -384,129 +392,163 @@ export default function Clients() {
   const doubled = [...secondaryClients, ...secondaryClients];
 
   return (
-    <section
-      id="clients"
-      style={{
-        background: "#0C0C10",
-        borderRadius: "16px",
-        padding: "40px 32px",
-        fontFamily: "var(--font-sans, system-ui, sans-serif)",
-      }}
-    >
-      {/* Section header */}
-      <div
-        style={{
-          fontSize: "11px",
-          fontWeight: 500,
-          letterSpacing: "1.5px",
-          textTransform: "uppercase",
-          color: "#6C63FF",
-          marginBottom: "10px",
-        }}
-      >
-        Our clients
-      </div>
-      <h2
-        style={{
-          fontSize: "28px",
-          fontWeight: 700,
-          color: "#FFFFFF",
-          lineHeight: 1.2,
-          margin: "0 0 8px",
-        }}
-      >
-        You&apos;re in good hands.
-      </h2>
-      <p
-        style={{
-          fontSize: "14px",
-          color: "rgba(255,255,255,0.4)",
-          marginBottom: "28px",
-          maxWidth: "480px",
-          lineHeight: 1.6,
-        }}
-      >
-        India&apos;s top creators trust Raya Social to manage their content,
-        growth, and brand.
-      </p>
-
-      {/* Featured creators grid */}
-      <div
-        ref={gridRef}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "12px",
-        }}
-      >
-        {featuredClients.map((client, i) => (
-          <CreatorCard
-            key={client.handle}
-            client={client}
-            index={i}
-            visible={cardsVisible}
-          />
-        ))}
-      </div>
-
-      {/* "And these creators too..." */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          margin: "24px 0 14px",
-        }}
-      >
-        <div
-          style={{
-            width: 5,
-            height: 5,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.15)",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "12px",
-            color: "rgba(255,255,255,0.3)",
-            fontStyle: "italic",
-          }}
-        >
-          And these creators too...
-        </span>
-      </div>
-
-      {/* Marquee */}
-      <div style={{ overflow: "hidden" }}>
-        <div
-          style={{
-            display: "flex",
-            gap: "8px",
-            width: "max-content",
-            animation: "marquee 20s linear infinite",
-          }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLDivElement).style.animationPlayState =
-              "paused")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLDivElement).style.animationPlayState =
-              "running")
-          }
-        >
-          {doubled.map((client, i) => (
-            <MarqueePill key={`${client.handle}-${i}`} client={client} />
-          ))}
-        </div>
-      </div>
-
+    <>
       <style>{`
         @keyframes marquee {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }
+
+        .clients-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+          .clients-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .clients-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .clients-section {
+          padding: 40px 32px;
+        }
+
+        @media (max-width: 480px) {
+          .clients-section {
+            padding: 28px 16px;
+          }
+        }
+
+        .clients-heading {
+          font-size: 28px;
+        }
+
+        @media (max-width: 480px) {
+          .clients-heading {
+            font-size: 22px;
+          }
+        }
       `}</style>
-    </section>
+
+      <section
+        id="clients"
+        className="clients-section"
+        style={{
+          background: "#0C0C10",
+          borderRadius: "16px",
+          fontFamily: "var(--font-sans, system-ui, sans-serif)",
+        }}
+      >
+        {/* Section header */}
+        <div
+          style={{
+            fontSize: "11px",
+            fontWeight: 500,
+            letterSpacing: "1.5px",
+            textTransform: "uppercase",
+            color: "#6C63FF",
+            marginBottom: "10px",
+          }}
+        >
+          Our clients
+        </div>
+        <h2
+          className="clients-heading"
+          style={{
+            fontWeight: 700,
+            color: "#FFFFFF",
+            lineHeight: 1.2,
+            margin: "0 0 8px",
+          }}
+        >
+          You&apos;re in good hands.
+        </h2>
+        <p
+          style={{
+            fontSize: "14px",
+            color: "rgba(255,255,255,0.4)",
+            marginBottom: "28px",
+            maxWidth: "480px",
+            lineHeight: 1.6,
+          }}
+        >
+          India&apos;s top creators trust Raya Social to manage their content,
+          growth, and brand.
+        </p>
+
+        {/* Featured creators grid */}
+        <div ref={gridRef} className="clients-grid">
+          {featuredClients.map((client, i) => (
+            <CreatorCard
+              key={client.handle}
+              client={client}
+              index={i}
+              visible={cardsVisible}
+            />
+          ))}
+        </div>
+
+        {/* "And these creators too..." */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            margin: "24px 0 14px",
+          }}
+        >
+          <div
+            style={{
+              width: 5,
+              height: 5,
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.15)",
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontSize: "12px",
+              color: "rgba(255,255,255,0.3)",
+              fontStyle: "italic",
+            }}
+          >
+            And these creators too...
+          </span>
+        </div>
+
+        {/* Marquee */}
+        <div style={{ overflow: "hidden" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "8px",
+              width: "max-content",
+              animation: "marquee 20s linear infinite",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLDivElement).style.animationPlayState =
+                "paused")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLDivElement).style.animationPlayState =
+                "running")
+            }
+          >
+            {doubled.map((client, i) => (
+              <MarqueePill key={`${client.handle}-${i}`} client={client} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

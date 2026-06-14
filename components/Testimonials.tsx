@@ -153,176 +153,197 @@ export default function Testimonials() {
   const [payal, vaishali, madhav, aarushi] = testimonials;
 
   return (
-    <section className="section">
-      {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: "52px" }}>
-        <div className="pill" style={{ marginBottom: "18px" }}>
-          Testimonials
-        </div>
-        <div
-          style={{
-            fontSize: "38px",
-            fontWeight: 900,
-            letterSpacing: "-1.8px",
-            color: "#FFFFFF",
-            lineHeight: 1.08,
-            marginBottom: "12px",
-          }}
-        >
-          Hear it directly from
-          <br />
-          <span style={{ color: "#6C63FF", fontStyle: "italic" }}>
-            our clients.
-          </span>
-        </div>
-        <p
-          style={{
-            fontSize: "14px",
-            color: "rgba(255,255,255,0.38)",
-            maxWidth: "440px",
-            margin: "0 auto",
-            lineHeight: 1.7,
-          }}
-        >
-          Real creators. Real results. Here's what they say about working with
-          Raya Social.
-        </p>
-      </div>
+    <>
+      <style>{`
+        .testimonials-heading {
+          font-size: 38px;
+          font-weight: 900;
+          letter-spacing: -1.8px;
+          color: #FFFFFF;
+          line-height: 1.08;
+          margin-bottom: 12px;
+        }
 
-      {/* Two-column masonry-style grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "16px",
-          alignItems: "start",
-        }}
-      >
-        {/* Left column */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {/* Payal — video top */}
-          <div
-            className="card"
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          align-items: start;
+        }
+
+        .testimonials-col {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+          .testimonials-heading {
+            font-size: 26px;
+            letter-spacing: -1px;
+          }
+
+          .testimonials-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+      <section className="section">
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: "52px" }}>
+          <div className="pill" style={{ marginBottom: "18px" }}>
+            Testimonials
+          </div>
+          <div className="testimonials-heading">
+            Hear it directly from
+            <br />
+            <span style={{ color: "#6C63FF", fontStyle: "italic" }}>
+              our clients.
+            </span>
+          </div>
+          <p
             style={{
-              background: "#111119",
-              border: "0.5px solid rgba(255,255,255,0.08)",
-              borderRadius: "16px",
-              overflow: "hidden",
+              fontSize: "14px",
+              color: "rgba(255,255,255,0.38)",
+              maxWidth: "440px",
+              margin: "0 auto",
+              lineHeight: 1.7,
             }}
           >
-            <VideoThumb
-              bg={payal.videoBg}
-              caption={payal.videoCaption}
-              height={220}
-            />
-            <div style={{ padding: "22px 24px" }}>
-              <div style={{ marginBottom: "6px" }}>
-                <span
+            Real creators. Real results. Here&apos;s what they say about working
+            with Raya Social.
+          </p>
+        </div>
+
+        {/* Two-column masonry-style grid */}
+        <div className="testimonials-grid">
+          {/* Left column */}
+          <div className="testimonials-col">
+            {/* Payal — video top */}
+            <div
+              className="card"
+              style={{
+                background: "#111119",
+                border: "0.5px solid rgba(255,255,255,0.08)",
+                borderRadius: "16px",
+                overflow: "hidden",
+              }}
+            >
+              <VideoThumb
+                bg={payal.videoBg}
+                caption={payal.videoCaption}
+                height={220}
+              />
+              <div style={{ padding: "22px 24px" }}>
+                <div style={{ marginBottom: "6px" }}>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    Raya Social{" "}
+                  </span>
+                </div>
+                <HighlightedQuote
+                  quote={payal.quote}
+                  highlight={payal.highlight}
+                />
+                <TestimonialAuthor t={payal} />
+              </div>
+            </div>
+
+            {/* Vaishali — text top, video bottom */}
+            <div
+              className="card"
+              style={{
+                background: "#111119",
+                border: "0.5px solid rgba(255,255,255,0.08)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                paddingTop: "26px",
+              }}
+            >
+              <div style={{ padding: "0 24px" }}>
+                <HighlightedQuote
+                  quote={vaishali.quote}
+                  highlight={vaishali.highlight}
+                />
+                <div
                   style={{
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "#FFFFFF",
+                    paddingBottom: "22px",
+                    borderBottom: "0.5px solid rgba(255,255,255,0.06)",
+                    marginBottom: "0",
                   }}
                 >
-                  Raya Social{" "}
-                </span>
+                  <TestimonialAuthor t={vaishali} />
+                </div>
               </div>
-              <HighlightedQuote
-                quote={payal.quote}
-                highlight={payal.highlight}
+              <VideoThumb
+                bg={vaishali.videoBg}
+                caption={vaishali.videoCaption}
+                height={190}
               />
-              <TestimonialAuthor t={payal} />
             </div>
           </div>
 
-          {/* Vaishali — text top, video bottom */}
-          <div
-            className="card"
-            style={{
-              background: "#111119",
-              border: "0.5px solid rgba(255,255,255,0.08)",
-              borderRadius: "16px",
-              overflow: "hidden",
-              paddingTop: "26px",
-            }}
-          >
-            <div style={{ padding: "0 24px" }}>
-              <HighlightedQuote
-                quote={vaishali.quote}
-                highlight={vaishali.highlight}
-              />
-              <div
-                style={{
-                  paddingBottom: "22px",
-                  borderBottom: "0.5px solid rgba(255,255,255,0.06)",
-                  marginBottom: "0",
-                }}
-              >
-                <TestimonialAuthor t={vaishali} />
+          {/* Right column */}
+          <div className="testimonials-col">
+            {/* Madhav — text top, video bottom */}
+            <div
+              className="card"
+              style={{
+                background: "#111119",
+                border: "0.5px solid rgba(255,255,255,0.08)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                paddingTop: "26px",
+              }}
+            >
+              <div style={{ padding: "0 24px" }}>
+                <HighlightedQuote
+                  quote={madhav.quote}
+                  highlight={madhav.highlight}
+                />
+                <div style={{ paddingBottom: "22px" }}>
+                  <TestimonialAuthor t={madhav} />
+                </div>
               </div>
-            </div>
-            <VideoThumb
-              bg={vaishali.videoBg}
-              caption={vaishali.videoCaption}
-              height={190}
-            />
-          </div>
-        </div>
-
-        {/* Right column */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {/* Madhav — text top, video bottom */}
-          <div
-            className="card"
-            style={{
-              background: "#111119",
-              border: "0.5px solid rgba(255,255,255,0.08)",
-              borderRadius: "16px",
-              overflow: "hidden",
-              paddingTop: "26px",
-            }}
-          >
-            <div style={{ padding: "0 24px" }}>
-              <HighlightedQuote
-                quote={madhav.quote}
-                highlight={madhav.highlight}
+              <VideoThumb
+                bg={madhav.videoBg}
+                caption={madhav.videoCaption}
+                height={200}
               />
-              <div style={{ paddingBottom: "22px" }}>
-                <TestimonialAuthor t={madhav} />
+            </div>
+
+            {/* Aarushi — video top */}
+            <div
+              className="card"
+              style={{
+                background: "#111119",
+                border: "0.5px solid rgba(255,255,255,0.08)",
+                borderRadius: "16px",
+                overflow: "hidden",
+              }}
+            >
+              <VideoThumb
+                bg={aarushi.videoBg}
+                caption={aarushi.videoCaption}
+                height={210}
+              />
+              <div style={{ padding: "22px 24px" }}>
+                <HighlightedQuote
+                  quote={aarushi.quote}
+                  highlight={aarushi.highlight}
+                />
+                <TestimonialAuthor t={aarushi} />
               </div>
-            </div>
-            <VideoThumb
-              bg={madhav.videoBg}
-              caption={madhav.videoCaption}
-              height={200}
-            />
-          </div>
-
-          {/* Aarushi — video top */}
-          <div
-            className="card"
-            style={{
-              background: "#111119",
-              border: "0.5px solid rgba(255,255,255,0.08)",
-              borderRadius: "16px",
-              overflow: "hidden",
-            }}
-          >
-            <VideoThumb
-              bg={aarushi.videoBg}
-              caption={aarushi.videoCaption}
-              height={210}
-            />
-            <div style={{ padding: "22px 24px" }}>
-              <HighlightedQuote
-                quote={aarushi.quote}
-                highlight={aarushi.highlight}
-              />
-              <TestimonialAuthor t={aarushi} />
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
