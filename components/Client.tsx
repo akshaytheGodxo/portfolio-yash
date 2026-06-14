@@ -45,14 +45,7 @@ const featuredClients: Client[] = [
     photo: "/clients/nupur_patil.jpg",
     followers: "723K",
   },
-  {
-    name: "Dr Vaishali",
-    handle: "@dr.vaishali_kukreja",
-    initials: "VK",
-    avatarBg: "#2B1A0A",
-    photo: "/clients/vaishali_kukreja.jpg",
-    followers: "64.6K",
-  },
+
   {
     name: "Rishi",
     handle: "@fit.with.rishi",
@@ -60,6 +53,14 @@ const featuredClients: Client[] = [
     avatarBg: "#0F3320",
     photo: "/clients/fit_with_rishi.jpg",
     followers: "312K",
+  },
+  {
+    name: "Madhav Bhatia",
+    handle: "@madhavbhatia",
+    initials: "M",
+    avatarBg: "#1A1A2E",
+    photo: "/clients/madhavbhatia.jpg",
+    followers: "315K",
   },
 ];
 
@@ -100,27 +101,26 @@ const moreClients: Client[] = [
     photo: "/clients/kunalkumar.jpg",
   },
   {
-    name: "Madhav Bhatia",
-    handle: "@madhavbhatia",
-    initials: "M",
-    avatarBg: "#1A1A2E",
-    photo: "/clients/madhavbhatia.jpg",
+    name: "Dr Vaishali",
+    handle: "@dr.vaishali_kukreja",
+    initials: "VK",
+    avatarBg: "#2B1A0A",
+    photo: "/clients/vaishali_kukreja.jpg",
   },
 ];
 
 function LogoItem({ client }: { client: Client }) {
   const [hovered, setHovered] = useState(false);
-  const href = `https://instagram.com/${client.handle.replace("@", "")}`;
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="logo-item relative"
+    <div
+      className="logo-item"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {client.followers && (
+        <span className="logo-item__followers">{client.followers}</span>
+      )}
       <span className="logo-item__avatar">
         {client.photo ? (
           <img
@@ -148,12 +148,12 @@ function LogoItem({ client }: { client: Client }) {
               : { opacity: 0, y: 10, scale: 0.9 }
           }
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="pointer-events-none absolute -top-2 left-1/2 z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-semibold text-white shadow-lg"
+          className="pointer-events-none absolute -top-2 left-1/2 z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-semibold text-white shadow-lg max-md:hidden"
         >
           {client.followers} followers
         </motion.span>
       )}
-    </a>
+    </div>
   );
 }
 
@@ -176,16 +176,11 @@ export default function Clients() {
           ))}
         </div>
 
-        <p className="clients-divider">And these amazing creators too…</p>
-
         <div className="relative mx-auto max-w-3xl overflow-hidden py-4">
           <div className="flex animate-scroll-left gap-4">
             {[...moreClients, ...moreClients].map((client, idx) => (
-              <a
+              <div
                 key={`${client.handle}-${idx}`}
-                href={`https://instagram.com/${client.handle.replace("@", "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group flex shrink-0 flex-col items-center gap-2"
               >
                 <span
@@ -205,7 +200,7 @@ export default function Clients() {
                 <span className="whitespace-nowrap text-xs font-medium text-[var(--text-muted)] transition-colors group-hover:text-[var(--text-secondary)]">
                   {client.name}
                 </span>
-              </a>
+              </div>
             ))}
           </div>
         </div>

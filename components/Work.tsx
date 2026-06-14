@@ -5,11 +5,11 @@ import { motion } from "motion/react";
 import HoverVideo from "@/components/HoverVideo";
 
 const videos = [
-  "2wFxWol3ueo", "KHy8uAFqXQU", "eCVRdixqzr8", "vEqE7DnM3cg",
-  "ThlXpUQvasg", "z61BQ0hKCLU", "bfKTpJkl82E", "ZTbZlsrLmII", "ns-HNUGti8c",
+  "2wFxWol3ueo", "KHy8uAFqXQU", "eCVRdixqzr8",
+  "vEqE7DnM3cg", "ThlXpUQvasg", "z61BQ0hKCLU",
 ];
 
-const VISIBLE = 8;
+const VISIBLE = 6;
 
 export default function Work() {
   const [showAll, setShowAll] = useState(false);
@@ -57,14 +57,7 @@ export default function Work() {
           </button>
         )}
 
-        <div className="section-bar">
-          <p className="section-bar__text">
-            <strong>{videos.length}</strong> videos crafted with precision
-          </p>
-          <a href="#contact" className="btn-primary btn-shimmer">
-            Get videos like these →
-          </a>
-        </div>
+        
       </div>
     </section>
   );

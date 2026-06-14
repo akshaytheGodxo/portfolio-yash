@@ -65,7 +65,7 @@ export default function Process() {
                   whileInView={{ opacity: 1, y: 0, boxShadow: "0 0 30px rgba(108,99,255,0.08)" }}
                   viewport={{ once: true, margin: "-30px" }}
                   transition={{ duration: 0.5, delay: idx * 0.15 + 0.15 }}
-                  className="mt-5 w-full rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 text-center transition-colors hover:border-[var(--accent-border)]"
+                  className="mt-5 h-full w-full rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 text-center transition-colors hover:border-[var(--accent-border)]"
                 >
                   <h3 className="text-sm font-bold text-[var(--text)]">{step.title}</h3>
                   <p className="mt-2 text-xs leading-relaxed text-[var(--text-secondary)]">{step.desc}</p>
