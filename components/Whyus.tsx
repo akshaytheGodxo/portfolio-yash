@@ -90,9 +90,12 @@ export default function WhyUs() {
       <div className="container">
         <header className="section-header section-header--center">
           <span className="label">Why Raya Social</span>
-          <h2 className="heading heading--sm">Why top creators choose us.</h2>
+          <h2 className="heading heading--sm">
+            Why top creators and brands choose us.
+          </h2>
           <p className="lede">
-            Four things every client gets — that most agencies can&apos;t deliver.
+            Four things every client gets — that most agencies can&apos;t
+            deliver.
           </p>
         </header>
 
@@ -109,14 +112,22 @@ export default function WhyUs() {
               className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] p-6 transition-all duration-300 hover:border-[var(--accent-border)] hover:shadow-[0_0_30px_rgba(108,99,255,0.08)]"
             >
               <div className="relative z-10 flex items-start gap-5">
-                <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-[var(--accent)] transition-all duration-300 ${
-                  hovered === idx ? "bg-[var(--accent)] text-white shadow-[0_0_20px_var(--accent-border)]" : "bg-[var(--accent-soft)]"
-                }`}>
+                <span
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-[var(--accent)] transition-all duration-300 ${
+                    hovered === idx
+                      ? "bg-[var(--accent)] text-white shadow-[0_0_20px_var(--accent-border)]"
+                      : "bg-[var(--accent-soft)]"
+                  }`}
+                >
                   {r.icon}
                 </span>
                 <div className="min-w-0">
-                  <h3 className="text-base font-bold text-[var(--text)]">{r.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">{r.description}</p>
+                  <h3 className="text-base font-bold text-[var(--text)]">
+                    {r.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
+                    {r.description}
+                  </p>
                 </div>
               </div>
             </motion.div>

@@ -60,9 +60,7 @@ export default function Hero() {
       </div>
 
       <div className="container hero__content">
-        <span className="pill hero__pill">
-          Premium SMMA · India&apos;s Top Creators
-        </span>
+        <span className="pill hero__pill">Premium SMMA · Top Creators</span>
 
         <h1 className="hero__title">
           We build personal brands that{" "}
@@ -70,8 +68,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero__lede">
-          Full-service social media management for India&apos;s fastest-growing
-          personal brands. Script. Shoot. Edit. Post. Grow. Real humans, not AI.
+          Full-service social media management for the fastest-growing personal
+          brands. Script. Shoot. Edit. Post. Grow. Real humans, not AI.
         </p>
 
         <div className="hero__actions">

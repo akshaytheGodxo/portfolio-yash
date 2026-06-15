@@ -17,10 +17,12 @@ export default function Footer() {
         </div>
         <nav className="site-footer__nav" aria-label="Footer">
           {links.map((l) => (
-            <Link key={l.href} href={l.href}>{l.label}</Link>
+            <Link key={l.href} href={l.href}>
+              {l.label}
+            </Link>
           ))}
         </nav>
-        <p className="site-footer__copy">© 2025 Raya Social · India</p>
+        <p className="site-footer__copy">© 2026 Raya Social · India</p>
       </div>
     </footer>
   );

@@ -5,8 +5,12 @@ import { motion } from "motion/react";
 import HoverVideo from "@/components/HoverVideo";
 
 const videos = [
-  "2wFxWol3ueo", "KHy8uAFqXQU", "eCVRdixqzr8",
-  "vEqE7DnM3cg", "ThlXpUQvasg", "z61BQ0hKCLU",
+  "2wFxWol3ueo",
+  "KHy8uAFqXQU",
+  "eCVRdixqzr8",
+  "ThlXpUQvasg",
+  "bfKTpJkl82E",
+  "ns-HNUGti8c",
 ];
 
 const VISIBLE = 6;
@@ -23,8 +27,12 @@ export default function Work() {
       <div className="container">
         <header className="section-header section-header--center">
           <span className="label">Our work</span>
-          <h2 className="heading heading--sm">Videos we edited for brands you trust.</h2>
-          <p className="lede">Hover to preview. {videos.length} examples from our portfolio.</p>
+          <h2 className="heading heading--sm">
+            Videos we edited for brands you trust.
+          </h2>
+          <p className="lede">
+            Hover to preview. {videos.length} examples from our portfolio.
+          </p>
         </header>
 
         <div className="video-grid">
@@ -47,17 +55,23 @@ export default function Work() {
         </div>
 
         {!showAll && hidden > 0 && (
-          <button type="button" className="text-link" onClick={() => setShowAll(true)}>
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => setShowAll(true)}
+          >
             View {hidden} more →
           </button>
         )}
         {showAll && (
-          <button type="button" className="text-link" onClick={() => setShowAll(false)}>
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => setShowAll(false)}
+          >
             Show less ↑
           </button>
         )}
-
-        
       </div>
     </section>
   );

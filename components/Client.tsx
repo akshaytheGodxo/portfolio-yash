@@ -16,7 +16,7 @@ const featuredClients: Client[] = [
     initials: "PA",
     avatarBg: "#2D1F6E",
     photo: "/clients/payal_mukharjee.jpg",
-    followers: "1.4M",
+    followers: "1.5M",
   },
   {
     name: "Vaibhav Kamboj",
@@ -24,7 +24,7 @@ const featuredClients: Client[] = [
     initials: "VK",
     avatarBg: "#0F3D28",
     photo: "/clients/top_stocker.jpg",
-    followers: "856K",
+    followers: "639K",
   },
   {
     name: "Aarushi Rawat",
@@ -32,7 +32,7 @@ const featuredClients: Client[] = [
     initials: "AR",
     avatarBg: "#3D1F0A",
     photo: "/clients/creative_thrives.jpg",
-    followers: "489K",
+    followers: "487K",
   },
   {
     name: "Nupuur Patil",
@@ -40,7 +40,7 @@ const featuredClients: Client[] = [
     initials: "NP",
     avatarBg: "#0A2B3D",
     photo: "/clients/nupur_patil.jpg",
-    followers: "723K",
+    followers: "361K",
   },
 
   {
@@ -49,26 +49,19 @@ const featuredClients: Client[] = [
     initials: "R",
     avatarBg: "#0F3320",
     photo: "/clients/fit_with_rishi.jpg",
-    followers: "312K",
+    followers: "194K",
   },
-  {
-    name: "Madhav Bhatia",
-    handle: "@madhavbhatia",
-    initials: "M",
-    avatarBg: "#1A1A2E",
-    photo: "/clients/madhavbhatia.jpg",
-    followers: "315K",
-  },
-];
-
-const moreClients: Client[] = [
   {
     name: "Yoga Delight",
     handle: "@_yogadelight",
     initials: "Y",
     avatarBg: "#2D1F6E",
     photo: "/clients/yogadelight.jpg",
+    followers: "145K",
   },
+];
+
+const moreClients: Client[] = [
   {
     name: "Dr Pallavi",
     handle: "@drpallaviahireshelke",
@@ -142,8 +135,8 @@ export default function Clients() {
           <span className="label">Our clients</span>
           <h2 className="heading heading--sm">You&apos;re in good hands.</h2>
           <p className="lede">
-            India&apos;s top creators trust Raya Social to manage their content,
-            growth, and brand.
+            Top creators trust Raya Social to manage their content, growth, and
+            brand.
           </p>
         </header>
 

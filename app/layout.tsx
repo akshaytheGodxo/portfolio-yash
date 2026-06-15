@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "RayaSocial - Personal Branding Agency",
   description:
-    "Premium social media management for India's fastest-growing personal brands",
+    "Premium social media management for the fastest-growing personal brands",
   viewport: "width=device-width, initial-scale=1.0, maximum-scale=5.0",
 };
 
