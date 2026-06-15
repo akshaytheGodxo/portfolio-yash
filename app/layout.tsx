@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description:
     "Premium social media management for the fastest-growing personal brands",
   viewport: "width=device-width, initial-scale=1.0, maximum-scale=5.0",
+  icons: [{ rel: "icon", url: "/rayasocial_logo_square.png" }],
 };
 
 export default function RootLayout({

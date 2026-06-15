@@ -83,7 +83,7 @@ export default function HoverVideo({
         {playing && (
           <iframe
             className={`hover-video__iframe${loaded ? " hover-video__iframe--visible" : ""}`}
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`}
             title="Video preview"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             onLoad={() => setLoaded(true)}
