@@ -17,15 +17,31 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <FadeUp><Hero /></FadeUp>
-      <FadeUp><Clients /></FadeUp>
-      <FadeUp><Work /></FadeUp>
-      <FadeUp><Services /></FadeUp>
-      <FadeUp><WhyUs /></FadeUp>
-      <FadeUp><Process /></FadeUp>
-      <FadeUp><Testimonials /></FadeUp>
-      <FadeUp><FAQ /></FadeUp>
-      <FadeUp><Contact /></FadeUp>
+      <FadeUp>
+        <Hero />
+      </FadeUp>
+      <FadeUp>
+        <Clients />
+      </FadeUp>
+      <FadeUp>
+        <Services />
+      </FadeUp>
+      <FadeUp>
+        <Work />
+      </FadeUp>
+      <FadeUp>
+        <WhyUs />
+      </FadeUp>
+      <FadeUp>
+        <Process />
+      </FadeUp>
+
+      <FadeUp>
+        <FAQ />
+      </FadeUp>
+      <FadeUp>
+        <Contact />
+      </FadeUp>
       <Footer />
     </main>
   );

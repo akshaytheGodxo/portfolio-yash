@@ -17,10 +17,11 @@ export default function HoverVideo({
 }: HoverVideoProps) {
   const [playing, setPlaying] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [thumbSrc, setThumbSrc] = useState(
+    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+  );
   const rootRef = useRef<HTMLDivElement>(null);
   const touchRef = useRef(false);
-
-  const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   const stop = useCallback(() => {
     setPlaying(false);
@@ -72,11 +73,12 @@ export default function HoverVideo({
     >
       <div className="hover-video__frame">
         <img
-          src={thumbnail}
+          src={thumbSrc}
           alt=""
           className={`hover-video__poster${playing && loaded ? " hover-video__poster--hidden" : ""}`}
           loading="lazy"
           decoding="async"
+          onError={() => setThumbSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)}
         />
         {playing && (
           <iframe

@@ -1,8 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
-import { useState } from "react";
-
 type Client = {
   name: string;
   handle: string;
@@ -110,14 +107,8 @@ const moreClients: Client[] = [
 ];
 
 function LogoItem({ client }: { client: Client }) {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <div
-      className="logo-item"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className="logo-item">
       {client.followers && (
         <span className="logo-item__followers">{client.followers}</span>
       )}
@@ -139,20 +130,6 @@ function LogoItem({ client }: { client: Client }) {
         )}
       </span>
       <span className="logo-item__name">{client.name}</span>
-      {client.followers && (
-        <motion.span
-          initial={{ opacity: 0, y: 10, scale: 0.9 }}
-          animate={
-            hovered
-              ? { opacity: 1, y: 0, scale: 1 }
-              : { opacity: 0, y: 10, scale: 0.9 }
-          }
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="pointer-events-none absolute -top-2 left-1/2 z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-semibold text-white shadow-lg max-md:hidden"
-        >
-          {client.followers} followers
-        </motion.span>
-      )}
     </div>
   );
 }
@@ -176,32 +153,60 @@ export default function Clients() {
           ))}
         </div>
 
-        <div className="relative mx-auto max-w-3xl overflow-hidden py-4">
-          <div className="flex animate-scroll-left gap-4">
-            {[...moreClients, ...moreClients].map((client, idx) => (
-              <div
-                key={`${client.handle}-${idx}`}
-                className="group flex shrink-0 flex-col items-center gap-2"
-              >
-                <span
-                  className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--border)] text-sm font-bold transition-all duration-300 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_var(--accent-border)]"
-                  style={{ background: client.avatarBg }}
+        <div className="mx-auto max-w-xl overflow-hidden py-4 mask-scroll">
+          <div className="inline-flex animate-scroll-left">
+            <div className="flex gap-3">
+              {moreClients.map((client) => (
+                <div
+                  key={client.handle}
+                  className="group flex shrink-0 flex-col items-center gap-2"
                 >
-                  {client.photo ? (
-                    <img
-                      src={client.photo}
-                      alt={client.name}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    client.initials
-                  )}
-                </span>
-                <span className="whitespace-nowrap text-xs font-medium text-[var(--text-muted)] transition-colors group-hover:text-[var(--text-secondary)]">
-                  {client.name}
-                </span>
-              </div>
-            ))}
+                  <span
+                    className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--border)] text-sm font-bold transition-all duration-300 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_var(--accent-border)]"
+                    style={{ background: client.avatarBg }}
+                  >
+                    {client.photo ? (
+                      <img
+                        src={client.photo}
+                        alt={client.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      client.initials
+                    )}
+                  </span>
+                  <span className="whitespace-nowrap text-xs font-medium text-[var(--text-muted)] transition-colors group-hover:text-[var(--text-secondary)]">
+                    {client.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-3">
+              {moreClients.map((client) => (
+                <div
+                  key={client.handle}
+                  className="group flex shrink-0 flex-col items-center gap-2"
+                >
+                  <span
+                    className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--border)] text-sm font-bold transition-all duration-300 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_var(--accent-border)]"
+                    style={{ background: client.avatarBg }}
+                  >
+                    {client.photo ? (
+                      <img
+                        src={client.photo}
+                        alt={client.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      client.initials
+                    )}
+                  </span>
+                  <span className="whitespace-nowrap text-xs font-medium text-[var(--text-muted)] transition-colors group-hover:text-[var(--text-secondary)]">
+                    {client.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
