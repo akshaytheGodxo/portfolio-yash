@@ -42,7 +42,7 @@ export default function Contact() {
 
         <div className="contact-channels">
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/6394952571"
             target="_blank"
             rel="noopener noreferrer"
             className="contact-channel"
@@ -53,11 +53,11 @@ export default function Contact() {
               <span>Replies in minutes</span>
             </span>
           </a>
-          <a href="mailto:hello@rayasocial.in" className="contact-channel">
+          <a href="mailto:whiz@rayasocial.com" className="contact-channel">
             <span aria-hidden="true">✉️</span>
             <span>
               <strong>Email</strong>
-              <span>hello@rayasocial.in</span>
+              <span>whiz@rayasocial.com</span>
             </span>
           </a>
         </div>
