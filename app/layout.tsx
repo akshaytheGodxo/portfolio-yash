@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import CursorTrail from "@/components/CursorTrail";
 import "./globals.css";
@@ -13,12 +13,49 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   title: "RayaSocial - Personal Branding Agency",
   description:
     "Premium social media management for the fastest-growing personal brands",
-  viewport: "width=device-width, initial-scale=1.0, maximum-scale=5.0",
-  icons: [{ rel: "icon", url: "/rayasocial_logo_square.png" }],
+  icons: {
+    icon: "/rayasocial_logo_square.png",
+    apple: "/rayasocial_logo_transparent.png",
+  },
+  openGraph: {
+    title: "RayaSocial - Personal Branding Agency",
+    description:
+      "Premium social media management for the fastest-growing personal brands",
+    url: "/",
+    siteName: "RayaSocial",
+    images: [
+      {
+        url: "/rayasocial_logo_transparent.png",
+        width: 1200,
+        height: 630,
+        alt: "RayaSocial",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RayaSocial - Personal Branding Agency",
+    description:
+      "Premium social media management for the fastest-growing personal brands",
+    images: ["/rayasocial_logo_transparent.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
