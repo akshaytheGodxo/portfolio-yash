@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Premium social media management for the fastest-growing personal brands",
   icons: {
     icon: "/rayasocial_logo_square.png",
-    apple: "/rayasocial_logo_transparent.png",
+    apple: "/rayasocial_logo_square.png",
   },
   openGraph: {
     title: "RayaSocial - Personal Branding Agency",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "RayaSocial",
     images: [
       {
-        url: "/rayasocial_logo_transparent.png",
+        url: "/rayasocial_logo_square.png",
         width: 1200,
         height: 630,
         alt: "RayaSocial",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "RayaSocial - Personal Branding Agency",
     description:
       "Premium social media management for the fastest-growing personal brands",
-    images: ["/rayasocial_logo_transparent.png"],
+    images: ["/rayasocial_logo_square.png"],
   },
 
   robots: {
